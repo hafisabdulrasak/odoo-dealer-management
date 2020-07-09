@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="dealer.report_dealer_commission_wiz">
+        <t t-call='web.html_container'>
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <p> Dealer Commission wiz Report </p>
+                        <br></br>
+                         <table class="table table-bordered mt32">
+                            <thead>
+                                <tr>
+                                    <th class="text-center"><span>dealer</span></th>
+                                    <th class="text-center"><span>extra amount</span></th>
+                                    <th class="text-center"><span>total amount</span></th>
+                                    <th class="text-center"><span>total sales</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-center" t-foreach="docs" t-as="o">
+                                    <td><span t-esc="o['dealer'].dealer.name"/></td>
+                                    <td><span t-esc="o['dealer'].extra_amount"/></td>
+                                    <td><span t-esc="o['dealer'].total_amount"/></td>
+                                    <td><span t-esc="o['sale_ids']"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+
+     </template>
+</odoo>

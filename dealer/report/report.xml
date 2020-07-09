@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+       id="action_report_dealer_commission"
+       string="dealer commission"
+       model="dealer.commission"
+       report_type="qweb-pdf"
+       file="dealer.report_dealer_commission"
+       name="dealer.report_dealer_commission"
+       print_report_name="'dealer commission - %s' % (object.dealer)"
+    />
+
+    <report
+       id="action_report_dealer"
+       string="dealer report"
+       model="dealer.dealer"
+       report_type="qweb-pdf"
+       file="dealer.report_dealer"
+       name="dealer.report_dealer"
+       print_report_name="'dealer commission - %s' % (object.name)"
+    />
+
+    <report
+       id="action_report_dealer_commission_wiz"
+       string="dealer commission report"
+       model="dealer.commission.wiz"
+       report_type="qweb-pdf"
+       file="dealer.report_dealer_commission_wiz"
+       name="dealer.report_dealer_commission_wiz"
+       print_report_name="'dealer commission - %s' % (object.dealer)"
+    />
+</odoo>

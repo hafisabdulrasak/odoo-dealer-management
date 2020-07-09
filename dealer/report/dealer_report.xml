@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_dealer">
+        <t t-call='web.html_container'>
+            <t t-foreach="docs" t-as="object">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <p> Dealer Report </p>
+                        <br></br>
+                        <p>Name : <span t-field="object['dealer'].name"/></p>
+                        <p>Age : <span t-field="object['dealer'].age"/></p>
+                        <p>Email : <span t-field="object['dealer'].email"/></p>
+                         <table class="table table-bordered mt32">
+                            <thead>
+                                <tr>
+                                    <th class="text-center"><span>number of sales</span></th>
+                                    <th class="text-center"><span>commission type</span></th>
+                                    <th class="text-center"><span>Total commission received</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-center">
+                                    <td><span t-field="object['dealer'].count"/></td>
+                                    <td><span t-field="object['dealer'].commission_type"/></td>
+                                    <td><span t-field="object['dealer'].commission_paid"/></td>
+                                </tr>
+                            </tbody>
+                         </table>
+                         <table class="table table-bordered mt32">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><span>order reference</span></th>
+                                <th class="text-center"><span>amount to pay</span></th>
+                                <th class="text-center"><span>invoice status</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center" t-foreach="object['sale_ids']" t-as="o">
+                                <td><span t-field="o.name"/></td>
+                                <td><span t-field="o.amount_pay"/></td>
+                                <td><span t-field="o.invoice_status"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+     </template>
+
+</odoo>

@@ -1,0 +1,38 @@
+<odoo>
+
+    <record model="ir.ui.view" id="sale_order_view_inherit">
+      <field name="name">sale.order.view.inherit1</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+          <xpath expr="//field[@name='confirmation_date']" position="after">
+              <field name="amount_pay" readonly='1' force_save="1" invisible="1"/>
+          </xpath>
+          <xpath expr="//field[@name='confirmation_date']" position="after">
+              <field name="dealer_commission" attrs="{'readonly': [('state', 'in', ['sale','done','cancel'])]}"/>
+          </xpath>
+          <xpath expr="//field[@name='confirmation_date']" position="after">
+              <field name="commission_type" attrs="{'readonly': [('state', 'in', ['sale','done','cancel'])]}"/>
+          </xpath>
+          <xpath expr="//field[@name='confirmation_date']" position="after">
+              <field name="dealer" attrs="{'readonly': [('state', 'in', ['sale','done','cancel'])]}"/>
+          </xpath>
+      </field>
+    </record>
+
+<!--    <record id="action_orders" model="ir.actions.act_window">-->
+<!--            <field name="name">Sales Orders</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model">sale.order</field>-->
+<!--            <field name="view_type">form</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--            <field name="search_view_id" ref="sale_order_view_search_inherit_sale"/>-->
+<!--            <field name="context">{'search_default_sales':1}</field>-->
+<!--            <field name="domain">[('dealer','=',['id'])]</field>-->
+<!--    </record>-->
+
+    <menuitem id="base.main_dealer_menu" parent="sale.sale_order_menu" action="dealer_list_action"/>
+
+    <menuitem id="base.dealer_menu" parent="sale.sale_order_menu" action="commission_list_action"/>
+
+</odoo>

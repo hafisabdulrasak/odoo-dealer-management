@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <record model="ir.ui.view" id="dealer_commission_form_view">
+            <field name="name">dealer.commission.form</field>
+            <field name="model">dealer.commission</field>
+            <field name="arch" type="xml">
+                <form string="dealer commission Form">
+                    <header>
+                        <button name="get_sales" type="object" string="Get sales" class="oe_highlight oe_inline" attrs="{'invisible': [('state', '=', 'paid')]}"/>
+                        <button name="button_payed" string="Paid" type="object" class="oe_highlight" attrs="{'invisible': [('state', '=', 'paid')]}"/>
+                        <button name="button_reset" string="Reset" type="object" class="oe_highlight" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,paid"/>
+                    </header>
+
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <field name="dealer" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="start_date" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="end_date" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="extra_amount" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="total_amount" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="invoice" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                        </group>
+                      <notebook>
+                        <page string="Completed Sales">
+                            <field name="completed_sales" attrs="{'readonly': [('state', '=', 'paid')]}">
+                                <tree editable="top">
+                                    <field name="name"/>
+                                    <field name="confirmation_date"/>
+                                    <field name="state"/>
+                                    <field name="partner_id"/>
+                                    <field name="user_id"/>
+                                    <field name="amount_total"/>
+                                    <field name="amount_pay"/>
+                                    <field name="invoice_status"/>
+                                </tree>
+                            </field>
+                        </page>
+                      </notebook>
+                        <separator string="Description" colspan="4"/>
+                            <field name="description" nolabel="1"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="dealer_commission_tree_view">
+            <field name="name">dealer.commission.tree</field>
+            <field name="model">dealer.commission</field>
+            <field name="arch" type="xml">
+                <tree string="dealer commission Tree">
+                    <field name="dealer"/>
+                    <field name="total_amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Graph View of dealer commission -->
+        <record id="view_commission_graph1" model="ir.ui.view">
+            <field name="name">view.commission.graph</field>
+            <field name="model">dealer.commission</field>
+            <field name="arch" type="xml">
+                <graph string="commission" type="bar">
+                    <field name="dealer" type="row"/>
+                    <field name="extra_amount" type="column"/>
+                    <field name="total_amount" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="view_commission_pivot" model="ir.ui.view">
+            <field name="name">view.commission.pivot</field>
+            <field name="model">dealer.commission</field>
+            <field name="arch" type="xml">
+               <pivot string="commission">
+                   <field name="dealer" type="row"/>
+                   <field name="extra_amount" type="col"/>
+                  <field name="start_date" type="col"/>
+                  <field name="end_date" type="col"/>
+               </pivot>
+            </field>
+        </record>
+
+        <record id="view_state_search" model="ir.ui.view">
+            <field name="name">view.state.search</field>
+            <field name="model">dealer.commission</field>
+            <field name="arch" type="xml">
+                <search string="state">
+                    <group string="Filter By">
+                        <filter name="by_state_draft" string="draft" domain="[('state','=','draft')]"/>
+                        <filter name="by_state_paid" string="paid" domain="[('state','=','paid')]"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="commission_list_action">
+            <field name="name">Dealer Commission</field>
+            <field name="res_model">dealer.commission</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph,pivot</field>
+        </record>
+
+<!--        <record model="ir.actions.act_window" id="paid_list_action">-->
+<!--            <field name="name">paid deals</field>-->
+<!--            <field name="res_model">dealer.commission</field>-->
+<!--            <field name="view_type">form</field>-->
+<!--            <field name="view_mode">tree,form,graph,pivot</field>-->
+<!--&lt;!&ndash;            <field name="context">{'search_default_by_state_paid':1}</field>&ndash;&gt;-->
+<!--&lt;!&ndash;            <field name="domain">[('dealer','=','id')]</field>&ndash;&gt;-->
+<!--        </record>-->
+
+
+</odoo>
+

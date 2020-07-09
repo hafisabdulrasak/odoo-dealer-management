@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <record model="ir.ui.view" id="dealer_form_view">
+            <field name="name">dealer.form</field>
+            <field name="model">dealer.dealer</field>
+            <field name="arch" type="xml">
+                <form string="dealer Form">
+                    <header>
+                        <button name="create_commission" type="object" string="Create Commission" class="oe_highlight oe_inline"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="Commission Paid">
+                        <button name="button_paid"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o">
+                            <span><field name="commission_paid" widget="statinfo"/>    Paid</span>
+                        </button>
+                        <button name="button_sales"
+                            context="{'search_default_sales':1}"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o">
+                            <span><field name="count" widget="statinfo"/>    Sales</span>
+                        </button>
+                    </div>
+                        <group colspan="4" col="4">
+                            <field name="name"/>
+                            <field name="age"/>
+                            <field name="partner"/>
+                            <field name="city"/>
+                            <field name="email" widget="email"/>
+                            <field name="commission"/>
+                            <field name="commission_type" widget="radio"/>
+                            <field name="sales"/>
+                            <field name="commission_paid"/>
+                            <field name="count"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="dealer_tree_view">
+            <field name="name">dealer.tree</field>
+            <field name="model">dealer.dealer</field>
+            <field name="arch" type="xml">
+                <tree string="dealer Tree">
+                    <field name="name"/>
+                    <field name="commission"/>
+                    <field name="sales"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="dealer_list_action">
+            <field name="name">Dealer Information</field>
+            <field name="res_model">dealer.dealer</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="main_dealer_menu" name="Dealer"/>
+
+        <menuitem id="dealer_menu" name="Dealer"
+                  parent="main_dealer_menu"/>
+
+        <menuitem id="report_menu" name="Report"
+                  parent="main_dealer_menu"/>
+
+         <menuitem id="commission_report_menu" name="Dealer Commission" parent="report_menu"
+                  action="action_view_form_dealer_commission_wiz"/>
+
+        <menuitem id="details_menu" name="Dealer" parent="dealer_menu"
+                  action="dealer_list_action"/>
+
+        <menuitem id="commission_details_menu" name="Dealer Commission" parent="dealer_menu"
+                  action="commission_list_action"/>
+</odoo>

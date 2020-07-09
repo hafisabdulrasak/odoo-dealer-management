@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="dealer.report_dealer_commission">
+        <t t-call='web.html_container'>
+            <t t-foreach="docs" t-as="object">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <p> Dealer Commission Report </p>
+                        <br></br>
+                        <p>Dealer : <span t-field='object.dealer'/></p>
+                        <p>Start Date : <span t-field='object.start_date'/></p>
+                        <p>End Date : <span t-field='object.end_date'/></p>
+                        <p>Amount : <span t-field='object.total_amount'/></p>
+                         <table class="table table-bordered mt32">
+                            <thead>
+                                <tr>
+                                    <th class="text-center"><span>order reference</span></th>
+                                    <th class="text-center"><span>confirmation date</span></th>
+                                    <th class="text-center"><span>status</span></th>
+                                    <th class="text-center"><span>customer</span></th>
+                                    <th class="text-center"><span>sales person</span></th>
+                                    <th class="text-center"><span>total</span></th>
+                                    <th class="text-center"><span>amount to pay</span></th>
+                                    <th class="text-center"><span>invoice status</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-center" t-foreach="object.completed_sales" t-as="sales">
+                                    <td><span t-field="sales.name"/></td>
+                                    <td><span t-field="sales.confirmation_date"/></td>
+                                    <td><span t-field="sales.state"/></td>
+                                    <td><span t-field="sales.partner_id"/></td>
+                                    <td><span t-field="sales.user_id"/></td>
+                                    <td><span t-field="sales.amount_total"/></td>
+                                    <td><span t-field="sales.amount_pay"/></td>
+                                    <td><span t-field="sales.invoice_status"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+     </template>
+</odoo>

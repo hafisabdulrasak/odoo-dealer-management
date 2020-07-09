@@ -1,0 +1,33 @@
+<odoo>
+
+    			<!-- Form view of Dealer commission wizard -->
+			<record id="view_form_dealer_commission_wiz" model="ir.ui.view">
+				<field name="name">view.form.dealer_commission</field>
+				<field name="model">dealer.commission.wiz</field>
+				<field name="arch" type="xml">
+					<form string="Dealer Commission" version="8.0">
+						<group>
+                            <field name="dealer" widget="many2many_tags"/>
+							<field name="date_from"/>
+                            <field name="date_to"/>
+							<field name="sales_confirmed"/>
+						</group>
+						<footer>
+							<button name='get_report' string='Proceed' type='object' class="oe_highlight"/>
+							OR
+							<button string='Cancel' class='oe_link' special='cancel'/>
+						</footer>
+					</form>
+				</field>
+			</record>
+
+		<!-- Action for Dealer Commission-->
+			<record id="action_view_form_dealer_commission_wiz" model="ir.actions.act_window">
+				<field name="name">Dealer Commission</field>
+				<field name="res_model">dealer.commission.wiz</field>
+				<field name="view_type">form</field>
+				<field name="view_mode">form</field>
+                <field name="target">new</field>
+			</record>
+
+</odoo>
