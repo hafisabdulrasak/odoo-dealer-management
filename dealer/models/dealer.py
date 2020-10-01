@@ -107,10 +107,10 @@ class SaleOrderInherited(models.Model):
             self.amount_pay = 0
 
 
-# class SaleOrderLineInherited(models.Model):
-#     _inherit = 'sale.order.line'
-#
-#     @api.model
-#     def create(self, vals):
-#         print(vals)
-#         return super(SaleOrderLineInherited, self).create(vals)
+ class SaleOrderLineInherited(models.Model):
+     _inherit = 'sale.order.line'
+
+     @api.model
+     def create(self, vals):
+         print(vals)
+         return super(SaleOrderLineInherited, self).create(vals)
